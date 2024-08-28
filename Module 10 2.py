@@ -6,15 +6,21 @@ class Knight(threading.Thread):
         self.name, self.power = name, power
 
     def run(self):
-        self.enemy, self.day_count = 100, 0
+        self.enemy, self.day_count, self.day = 100, 0, ''
         print('{}, на нас напали!'.format(self.name))
         while self.enemy:
             self.day_count += 1
             self.enemy = self.enemy - self.power
-            print(f"{self.name} сражается {self.day_count} день, осталось {self.enemy} воинов неприятеля.")
+            if 2 <= int(str(self.day_count)[-1]) <= 4:
+                self.day = 'дня'
+            elif int(str(self.day_count)[-1]) == 1:
+                self.day = 'день'
+            else:
+                self.day = 'дней'
+            print(f"{self.name} сражается {self.day_count} {self.day}, осталось {self.enemy} воинов неприятеля.")
             time.sleep(1)
         else:
-            print('%s одержал победу спустя %s дней(дня)!'%(self.name, self.day_count))
+            print('%s одержал победу спустя %s %s!'%(self.name, self.day_count, self.day))
 
 first_knight = Knight('Sir Lancelot', 10)
 second_knight = Knight("Sir Galahad", 20)
@@ -26,5 +32,4 @@ for knight in knights:
 
 for thread in knights:
     thread.join()
-print('Все битвы закончились!')
-
+print('Все битвы закончились, враг посрамлён и разгромлен!')
