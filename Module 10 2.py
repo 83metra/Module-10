@@ -15,6 +15,8 @@ class Knight(threading.Thread):
                 self.day = 'дня'
             elif int(str(self.day_count)[-1]) == 1:
                 self.day = 'день'
+            elif self.day_count > 100 and int(str(self.day_count)[-2]) in range(10, 20):
+                self.day = 'дней'
             else:
                 self.day = 'дней'
             print(f"{self.name} сражается {self.day_count} {self.day}, осталось {self.enemy} воинов неприятеля.")
