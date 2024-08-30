@@ -9,7 +9,7 @@ class Bank:
 
     def deposit(self):
         for i in range(self.number_of_transactions):
-            print('Операция по внесению денег № %s' % (i+1))
+            #print('Операция по внесению денег № %s' % (i+1))
             self.count += 1
             self.money = random.randrange(50, 500)
             if self.balance >= 500 and self.lock.locked():
@@ -25,7 +25,7 @@ class Bank:
 
     def take(self):
         for i in range(self.number_of_transactions):
-            print('Операция по снятию денег № %s' %(i+1))
+            #print('Операция по снятию денег № %s' %(i+1))
             self.money = random.randrange(50, 500)
             print('Запрос на: %s' %(self.money))
             if self.money <= self.balance:
@@ -35,7 +35,7 @@ class Bank:
                 print('Запрос отклонён, денег нет, но выдержитесь! Поступление средств в банкомат в ближайшее время не ожидается!')
             elif self.money > self.balance:
                 print('Запрос отклонён, недостаточно средств')
-                time.sleep(0.001)
+                #time.sleep(0.001)
                 self.lock.acquire()
                 time.sleep(0.001)
 
