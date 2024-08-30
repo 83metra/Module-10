@@ -9,7 +9,6 @@ class Bank:
         for i in range(10):
             self.money = random.randrange(50, 500)
             self.balance += self.money
-            print(self.lock)
             if self.balance >= 500 and self.lock.locked():
                 self.lock.release()
             print( f'Пополнение: {self.money}. Баланс: {self.balance}.')
