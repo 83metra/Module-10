@@ -33,8 +33,7 @@ class Bank:
                 self.balance = self.balance - self.money
                 print('Снятие: {}. Баланс: {}'.format(self.money, self.balance))
             elif self.count == self.number_of_transactions:
-                print('Запрос отклонён, недостаточно средств, поступление средств в банкомат в ближайшее время не ожидается!')
-                continue
+                print('Запрос отклонён, денег нет, но выдержитесь! Поступление средств в банкомат в ближайшее время не ожидается!')
             elif self.money > self.balance:
                 print('Запрос отклонён, недостаточно средств')
                 time.sleep(0.001)
