@@ -8,7 +8,7 @@ class Knight(threading.Thread):
     def run(self):
         self.enemy, self.day_count, self.day = 100, 0, ''
         print('{}, на нас напали!'.format(self.name))
-        while self.enemy:
+        while self.enemy  >= self.power:
             self.day_count += 1
             self.enemy = self.enemy - self.power
             if 2 <= int(str(self.day_count)[-1]) <= 4:
@@ -22,9 +22,13 @@ class Knight(threading.Thread):
             print(f"{self.name} сражается {self.day_count} {self.day}, осталось {self.enemy} воинов неприятеля.")
             time.sleep(1)
         else:
-            print('%s одержал победу спустя %s %s!'%(self.name, self.day_count, self.day))
+            if self.enemy == 0:
+                print('%s одержал сокрушительную победу спустя %s %s!'%(self.name, self.day_count, self.day))
+            elif self.enemy > 0:
+                print('%s одержал победу спустя %s %s! Оставшаяся горстка %s врагов трусливо разбежалась!' % (
+                self.name, self.day_count, self.day, self.enemy))
 
-first_knight = Knight('Sir Lancelot', 10)
+first_knight = Knight('Sir Lancelot', 45)
 second_knight = Knight("Sir Galahad", 20)
 
 knights = [first_knight, second_knight]
