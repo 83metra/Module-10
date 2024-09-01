@@ -37,7 +37,7 @@ class Bank:
                 print('Запрос отклонён, недостаточно средств')
                 #time.sleep(0.001)
                 self.lock.acquire()
-                time.sleep(0.001)
+            time.sleep(0.001)
 
 
 bk = Bank()
