@@ -1,11 +1,9 @@
 import threading, time, random, queue
 
-
 class Table:
     def __init__(self, number):
         self.number = number
         self.guest = None
-
 
 class Guest(threading.Thread):
     def __init__(self, name):
