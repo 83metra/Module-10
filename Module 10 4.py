@@ -21,7 +21,6 @@ class Guest(threading.Thread):
 
 class Cafe:
     threads = []
-
     def __init__(self, *tables):
         self.tables = list(tables)
         self.queue = queue.Queue()
@@ -41,8 +40,7 @@ class Cafe:
                 print('{0} в очереди'.format(guests[i]))
 
     def discuss_guests(self):
-        while not self.queue.empty() or not self.empty_table():
-
+        while not self.queue.empty() or any([table.guest for table in self.tables]):
             for table in self.tables:
                 if not table.guest is None and not table.guest.is_alive():  # is False:
                     print(
@@ -57,14 +55,6 @@ class Cafe:
                     th = table.guest
                     th.start()
                     self.threads.append(th)
-
-    def empty_table(self):
-        for table in self.tables:
-            if table.guest is None:
-                return True
-            else:
-                return False
-
 
 # Создание столов
 tables = [Table(number) for number in range(1, 6)]
