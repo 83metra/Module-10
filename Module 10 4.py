@@ -1,5 +1,4 @@
-import queue
-import threading, time, random
+import threading, time, random, queue
 
 
 class Table:
@@ -12,7 +11,6 @@ class Guest(threading.Thread):
     def __init__(self, name):
         super().__init__()
         self.name = name
-        # self.time_to_eat = 0
 
     def run(self):
         time.sleep(random.randint(3, 10))
@@ -44,8 +42,9 @@ class Cafe:
 
     def discuss_guests(self):
         while not self.queue.empty() or not self.empty_table():
+
             for table in self.tables:
-                if table.guest is not None and not table.guest.is_alive():  # is False:
+                if not table.guest is None and not table.guest.is_alive():  # is False:
                     print(
                         '{0} покушал(-а) и ушёл(ушла).'.format(table.guest))  # + f'Стол номер {table.number} свободен')
                     # print(f'Стол номер {table.number} свободен')
