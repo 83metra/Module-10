@@ -8,8 +8,8 @@ def read_info(name):
                 line = txt.readline()
                 if not line: # прерывание на пустой строке
                   break
-                #all_data.append(line) # целиком сырая строка
-                all_data.append(line[:-1:]) # только числа, без символов переноса
+                all_data.append(line) # целиком сырая строка
+                #all_data.append(line[:-1:]) # только числа, без символов переноса
     except FileNotFoundError:
         print(f'\033[31mОшибка! \033[0mФайл "{name}" не найден.\n\t Скорее всего,'
               f'Вы забыли скопировать его в каталог с программой!\n')
