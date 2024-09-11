@@ -5,28 +5,15 @@ class Table:
     def __init__(self, number):
         self.number = number
         self.guest = None
-    # def __str__(self):
-    #     return f'Table {self.number}'
-    #
-    # def say_info(self):
-    #     return self.guest is None
-
-
 
 class Guest(threading.Thread):
     def __init__(self, name):
         super().__init__()
         self.name = name
-        #self.time_to_eat = 0
 
 
     def run(self):
-        #self.time_to_eat = (random.randint(3,10))
-        #time.sleep(self.time_to_eat)
         time.sleep(random.randint(3,10))
-        #for i in range (self.time_to_eat):
-            #time.sleep(1)
-            #print(i, sep='')
 
     def __str__(self):
         return self.name
@@ -55,22 +42,19 @@ class Cafe:
 
     def discuss_guests(self):
         while not self.queue.empty() or not self.empty_table():
-        #if not self.queue.empty() and [table for table in self.tables] is not None:
-            #print('Есть очередь, столы заполнены')
             for table in self.tables:
                 if not (table.guest is None) and not table.guest.is_alive(): #is False:
                     print('{0} покушал(-а) и ушёл(ушла).'.format(table.guest))# + f'Стол номер {table.number} свободен')
-                    #print(f'Стол номер {table.number} свободен')
-                    table.guest = None
                     print(f'Стол номер {table.number} свободен')
+                    table.guest = None
+                    #print(f'Стол номер {table.number} свободен')
                 if not self.queue.empty() and table.guest is None:
                     table.guest = self.queue.get()
-                    #print(f'queue.get: {table.guest}')
-                    #print(f'{table.guest} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}')
-                    th = table.guest
-                    self.threads.append(th)
-                    th.start()
                     print(f'{table.guest} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}')
+                    th = table.guest
+                    th.start()
+                    self.threads.append(th)
+                    #print(f'{table.guest} вышел(-ла) из очереди и сел(-а) за стол номер {table.number}')
 
 
 
@@ -80,14 +64,6 @@ class Cafe:
                 return True
             else:
                 return False
-        #     for table in self.tables:
-        #         print(table.guest)
-        # else:
-        #     for table in self.tables:
-        #         print(table.guest)
-        #     for i in range(len(self.tables)):
-        #         print(f'discuss_guests: {self.tables[i]}')
-        #         print(self.tables[i] is None)
 
 
 
